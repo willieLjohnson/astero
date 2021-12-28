@@ -1,4 +1,6 @@
 import pygame
+import random
+
 from pygame.image import load
 from pygame.math import Vector2
 
@@ -22,8 +24,13 @@ def wrap_position(position, surface):
     w, h = surface.get_size()
     return Vector2(x % w, y % h)
     
-class SpriteSheet:
+def get_random_position(surface):
+    return Vector2(
+        random.randrange(surface.get_width()),
+        random.randrange(surface.get_height()),
+    )
 
+class SpriteSheet:
     def __init__(self, filename):
         """Load the sheet."""
         try:

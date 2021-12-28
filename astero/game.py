@@ -1,7 +1,7 @@
 import pygame
 
 from models import Spaceship, Asteroid
-from utils import load_sprite
+from utils import get_random_position, load_sprite
 
 class Astero:
     def __init__(self):
@@ -10,7 +10,7 @@ class Astero:
         self.background = load_sprite("background", "jpg", False)
         self.clock = pygame.time.Clock()
 
-        self.asteroids = [Asteroid((0, 0)) for _ in range(6)]
+        self.asteroids = [Asteroid(get_random_position(self.screen)) for _ in range(6)]
         self.spaceship = Spaceship((400, 300))
 
     def __init_pygame(self):
