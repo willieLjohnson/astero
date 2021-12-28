@@ -28,6 +28,14 @@ class Astero:
             ):
                 quit()
 
+        is_key_pressed = pygame.key.get_pressed()
+
+        if is_key_pressed[pygame.K_RIGHT] or is_key_pressed[pygame.K_d]:
+            self.spaceship.rotate(clockwise=True)
+        if is_key_pressed[pygame.K_LEFT] or is_key_pressed[pygame.K_a]:
+            self.spaceship.rotate(clockwise=False)
+
+
     def _process_game_logic(self):
         self.spaceship.move()
 
