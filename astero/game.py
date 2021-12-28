@@ -1,9 +1,12 @@
 import pygame
 
+from utils import load_sprite
+
 class Astero:
     def __init__(self):
         self.__init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
+        self.background = load_sprite("background", "jpg", False)
 
     def __init_pygame(self):
         pygame.init()
@@ -26,6 +29,6 @@ class Astero:
         pass
 
     def _draw(self):
-        self.screen.fill((0, 0, 255))
+        self.screen.blit(self.background, (0, 0))
         pygame.display.flip()
  
