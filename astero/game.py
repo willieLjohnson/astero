@@ -39,7 +39,7 @@ class Astero:
 
 
     def _process_game_logic(self):
-        self.spaceship.move()
+        self.spaceship.move(self.screen)
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))

@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 from pygame.transform import rotozoom
 
-from utils import load_sprite_from_sheet
+from utils import load_sprite_from_sheet, wrap_position
 
 UP = Vector2(0, -1)
 DOWN = Vector2(0, 1)
@@ -19,8 +19,8 @@ class GameObject:
         blit_position = self.position - Vector2(self.radius)
         surface.blit(self.sprite, blit_position)
         
-    def move(self):
-        self.position = self.position + self.velocity
+    def move(self, surface):
+        self.position = wrap_position(self.position + self.velocity, surface)
         
     def collides_with(self, other):
         distance = self.position.distance_to(other.position)
