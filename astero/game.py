@@ -4,14 +4,27 @@ from models import Spaceship, Asteroid
 from utils import get_random_position, load_sprite
 
 class Astero:
+    MIN_ASTEROID_DISTANCE = 250
+
     def __init__(self):
         self.__init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
         self.background = load_sprite("background", "jpg", False)
         self.clock = pygame.time.Clock()
 
-        self.asteroids = [Asteroid(get_random_position(self.screen)) for _ in range(6)]
+        self.asteroids = []
+
         self.spaceship = Spaceship((400, 300))
+            
+        for _ in range(6):
+            while True:
+                position = get_random_position(self.screen)
+                if (
+                    position.distance_to(self.spaceship.position) > self.MIN_ASTEROID_DISTANCE
+                ):
+                    break
+            
+            self.asteroids.append(Asteroid(position))
 
     def __init_pygame(self):
         pygame.init()
