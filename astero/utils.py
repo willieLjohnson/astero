@@ -1,5 +1,6 @@
 import pygame
 from pygame.image import load
+from pygame.math import Vector2
 
 def load_sprite(name, format="png", with_alpha=True):
     path = f"assets/{name}.{format}"
@@ -15,6 +16,11 @@ def load_sprite_from_sheet(name, rect):
 
     sheet = SpriteSheet(path)
     return sheet.image_at(rect)
+
+def wrap_position(position, surface):
+    x, y = position
+    w, h = surface.get_size()
+    return Vector2(x % w, y % h)
     
 class SpriteSheet:
 
