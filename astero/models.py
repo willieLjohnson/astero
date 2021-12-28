@@ -48,3 +48,7 @@ class Spaceship(GameObject):
         rotated_surface_size = Vector2(rotated_surface.get_size())
         blit_position = self.position - rotated_surface_size * 0.5
         surface.blit(rotated_surface, blit_position)
+
+class Asteroid(GameObject):
+    def __init__(self, position):
+        super().__init__(position, load_sprite_from_sheet("rock", (0, 0, 60, 60)), (0, 0))
