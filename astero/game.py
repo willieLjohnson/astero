@@ -2,7 +2,7 @@ import pygame
 
 from models import Spaceship, Asteroid
 
-from utils import get_random_position, load_sprite
+from utils import get_random_position, load_sprite, print_text
 
 class Astero:
     MIN_ASTEROID_DISTANCE = 250
@@ -12,6 +12,8 @@ class Astero:
         self.screen = pygame.display.set_mode((800, 600))
         self.background = load_sprite("background", "jpg", False)
         self.clock = pygame.time.Clock()
+        self.font = pygame.font.Font(None, 64)
+        self.message = ""
 
         self.asteroids = []
         self.bullets = []
@@ -69,6 +71,7 @@ class Astero:
             for asteroid in self.asteroids:
                 if asteroid.collides_with(self.spaceship):
                     self.spaceship = None
+                    self.message = "You Lost!"
                     break
                 
         for bullet in self.bullets[:]:
@@ -82,12 +85,18 @@ class Astero:
         for bullet in self.bullets[:]:
             if not self.screen.get_rect().collidepoint(bullet.position):
                 self.bullets.remove(bullet)
+        
+        if not self.asteroids and self.spaceship:
+            self.message = "You won!"
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))
 
         for game_object in self._get_game_objects():
             game_object.draw(self.screen)
+            
+        if self.message:
+            print_text(self.screen, self.message, self.font)
 
         pygame.display.flip()
         self.clock.tick(60)
