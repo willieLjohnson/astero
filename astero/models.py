@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 from pygame.transform import rotozoom
 
-from utils import load_sprite_from_sheet, wrap_position
+from utils import get_random_velocity, load_sprite_from_sheet, wrap_position
 
 UP = Vector2(0, -1)
 DOWN = Vector2(0, 1)
@@ -51,4 +51,4 @@ class Spaceship(GameObject):
 
 class Asteroid(GameObject):
     def __init__(self, position):
-        super().__init__(position, load_sprite_from_sheet("rock", (0, 0, 60, 60)), (0, 0))
+        super().__init__(position, load_sprite_from_sheet("rock", (0, 0, 60, 60)), get_random_velocity(1, 3))

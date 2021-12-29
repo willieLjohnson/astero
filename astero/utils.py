@@ -30,6 +30,11 @@ def get_random_position(surface):
         random.randrange(surface.get_height()),
     )
 
+def get_random_velocity(min_speed, max_speed):
+    speed = random.randint(min_speed, max_speed)
+    angle = random.randrange(0, 360)
+    return Vector2(speed, 0).rotate(angle)
+
 class SpriteSheet:
     def __init__(self, filename):
         """Load the sheet."""
