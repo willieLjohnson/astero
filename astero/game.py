@@ -25,7 +25,7 @@ class Astero:
                 ):
                     break
             
-            self.asteroids.append(Asteroid(position))
+            self.asteroids.append(Asteroid(position, self.asteroids.append))
 
     def __init_pygame(self):
         pygame.init()
@@ -74,6 +74,7 @@ class Astero:
         for bullet in self.bullets[:]:
             for asteroid in self.asteroids[:]:
                 if asteroid.collides_with(bullet):
+                    asteroid.split()
                     self.asteroids.remove(asteroid)
                     self.bullets.remove(bullet)
                     break
