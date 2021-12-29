@@ -14,6 +14,7 @@ class Astero:
         self.clock = pygame.time.Clock()
 
         self.asteroids = []
+        self.bullets = []
         self.spaceship = Spaceship((400, 300))
             
         for _ in range(6):
@@ -74,7 +75,7 @@ class Astero:
         self.clock.tick(60)
 
     def _get_game_objects(self):
-        game_objects = [*self.asteroids]
+        game_objects = [*self.asteroids, *self.bullets]
         
         if self.spaceship:
             game_objects.append(self.spaceship)
