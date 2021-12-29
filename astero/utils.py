@@ -3,6 +3,7 @@ import random
 
 from pygame.image import load
 from pygame.math import Vector2
+from pygame.mixer import Sound
 
 def load_sprite(name, format="png", with_alpha=True):
     path = f"assets/{name}.{format}"
@@ -18,6 +19,10 @@ def load_sprite_from_sheet(name, rect):
 
     sheet = SpriteSheet(path)
     return sheet.image_at(rect)
+
+def load_sound(name):
+    path = f"assets/{name}.wav"
+    return Sound(path)
 
 def wrap_position(position, surface):
     x, y = position
@@ -52,7 +57,7 @@ class SpriteSheet:
         image = pygame.Surface(rect.size).convert_alpha()
         image.blit(self.sheet, (0, 0), rect)
         if colorkey is not None:
-            if colorkey is -1:
+            if colorkey == -1:
                 colorkey = image.get_at((0,0))
             image.set_colorkey(colorkey, pygame.RLEACCEL)
         return image
