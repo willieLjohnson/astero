@@ -54,7 +54,6 @@ class Spaceship(GameObject):
     def shoot(self):
         bullet_velocity = self.direction * self.BULLET_SPEED + self.velocity
         bullet = Bullet(self.position, bullet_velocity)
-        bullet.direction = self.direction
         self.create_bullet_callback(bullet)
 
 class Asteroid(GameObject):

@@ -70,6 +70,17 @@ class Astero:
                 if asteroid.collides_with(self.spaceship):
                     self.spaceship = None
                     break
+                
+        for bullet in self.bullets[:]:
+            for asteroid in self.asteroids[:]:
+                if asteroid.collides_with(bullet):
+                    self.asteroids.remove(asteroid)
+                    self.bullets.remove(bullet)
+                    break
+        
+        for bullet in self.bullets[:]:
+            if not self.screen.get_rect().collidepoint(bullet.position):
+                self.bullets.remove(bullet)
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))
